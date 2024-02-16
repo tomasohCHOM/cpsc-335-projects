@@ -6,15 +6,13 @@ import pairs
 # and call the fail based on the users input
 def linker() -> None:
     # Prompt the user
-    print("Please enter a number for which file to test:")
-    print()
+    print("Please enter a number for which file to test:\n")
     print("1. Connecting Pairs of Persons")
-    print("2. Greedy Approach to Hamiltonian Problem")
-    print()
-    print("enter anything else to exit")
-    print()
+    print("2. Greedy Approach to Hamiltonian Problem\n")
+    print("enter anything else to exit\n")
+
     # Take user input
-    response = input("~> ").strip()
+    response = input("Your input here: ").strip()
     print()
     # Match their input to a function to test
     match response:
