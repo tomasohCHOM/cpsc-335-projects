@@ -42,21 +42,26 @@ def connect_pairs(row: list[int]) -> int:
 
 
 def main() -> None:
-    # Prompt the user for the input for the function
+    # Prompt for user input (a list of integers)
     print(
-        "Please enter a list of integers seperated by either spaces or commas, with or without square brackets:\n"
+        "Enter a list of integers, seperated by either spaces or commas, with or without brackets."
     )
-    response = input("Your input here: ")
-    arg1 = parse_list(response)
+    response1 = input("Your input here: ")
+
+    try:
+        arg1 = parse_list(response1)
+    except:
+        print("\nInvalid input for rows.\n")
+
+    print("\nInput: ")
+    print("rows =", arg1, "\n")
 
     print("Calling solution function...\n")
-    print("Input: ", arg1, "\n")
-
     start = time()
-    print("Output: ", connect_pairs(row=arg1), print())
+    print("Output: ", connect_pairs(row=arg1), "\n")
     end = time()
 
-    print("Time taken:", (end - start) * 1000, "ms")
+    print("Time taken:", (end - start) * 1000, "ms\n")
 
 
 if __name__ == "__main__":
