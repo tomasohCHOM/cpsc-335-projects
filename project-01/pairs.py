@@ -6,38 +6,32 @@ def connect_pairs(row: list[int]) -> int:
     # Store the number of swaps for our answer
     swaps = 0
     # Map every number to its index
-    indices = {person: i for i, person in enumerate(row)}
-    # Now loop through our row
+    indices = {person: i for (i, person) in enumerate(row)}
+
+    # Loop through our row, by indices
     for i in range(len(row)):
-        # Store the person we're looking at
+        # Store the person we are currently looking at
         person = row[i]
-        # Figure out the partner for the person we're looking at
-        partner = 0
-        # If the current person is even, their partner is person + 1.
-        # We will only match pairs when the current person is odd, to
-        # avoid matching the same pair twice
-        if person % 2 == 0:
-            continue
-        # If we are here, we know the partner is person - 1
-        partner = person - 1
-        # Let i and j be the current person and partners indices respectively
+
+        # Find the y partner of person as follows:
+        # If the person's ID is even, we know that its partner's
+        # ID is
+        partner = person + 1 if person % 2 == 0 else person - 1
+        # i and j are indices of the current person and its partner
         j = indices[partner]
-        # If the differene between i and j is greater than 1, they aren't
-        # next to each other, and we need to swap
+
+        # If the difference between their indices is greater than 1,
+        # we need to perform a swap since they are not next to each other
         if abs(i - j) > 1:
-            # Use a temp variable for easy swapping
-            temp = 0
-            # First, swap them in the rows
-            temp = row[j]
-            row[j] = row[i + 1]
-            row[i + 1] = temp
-            # Next, swap the indices in our map
-            temp = indices[row[j]]
-            indices[row[j]] = indices[row[i + 1]]
-            indices[row[i + 1]] = temp
+            # Swap the two people in the rows list
+            row[i + 1], row[j] = row[j], row[i + 1]
+            # Update the indices hash map values to match their new indices
+            indices[row[i + 1]] = i + 1
+            indices[row[j]] = j
             # Increase the number of swaps and move on to the next pairs
             swaps += 1
-    # Return the number of swaps we made
+    # Return the output, which is the minimum number of swaps
+    # such that the couples are all sitting next to each other
     return swaps
 
 
