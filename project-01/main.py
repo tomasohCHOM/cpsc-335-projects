@@ -9,7 +9,7 @@ def linker() -> None:
     print("Please enter a number for which file to test:\n")
     print("1. Connecting Pairs of Persons")
     print("2. Greedy Approach to Hamiltonian Problem\n")
-    print("enter anything else to exit\n")
+    print("Enter anything else to exit\n")
 
     # Take user input
     response = input("Your input here: ").strip()
