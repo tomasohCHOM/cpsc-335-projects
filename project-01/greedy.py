@@ -20,7 +20,7 @@ def greedy_hamiltonian(distances: list[int], fuel: list[int], mpg: int) -> int:
         # from the city next to it (i + 1). We do not worry about
         # circling around (starting at city with index = 0) because
         # we already looped through it
-        if surplus <= 0:
+        if surplus < 0:
             surplus = 0
             start = i + 1
 
