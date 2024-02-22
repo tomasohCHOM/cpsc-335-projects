@@ -1,5 +1,15 @@
-from time import time
-from parse import parse_list
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 1 of CPSC 335-04
+
+# sample_inputs is a list that contains all the inputs for each test case.
+# If you wish to run more test cases against the algorithm, you may modify
+# this variable by adding another entry in the list (separated by a comma).
+# It must be a valid test case, with the "row" as the key, and the value as
+# the corresponding value of "row" (a list of integers), as per the problem
+# statement.
+sample_inputs = [{"row": [0, 2, 1, 3]}, {"row": [3, 2, 0, 1]}]
 
 
 def connect_pairs(row: list[int]) -> int:
@@ -35,28 +45,14 @@ def connect_pairs(row: list[int]) -> int:
     return swaps
 
 
-def main() -> None:
-    # Prompt for user input (a list of integers)
-    print(
-        "Enter a list of integers, seperated by either spaces or commas, with or without brackets."
-    )
-    response1 = input("Your input here: ")
+# Define the main execution process when this file is run
+def execute() -> None:
+    # Process all the sample inputs (rows - list of integers) for each test
+    # case, outputting the result of calling the function connect_pairs()
+    for i, input in enumerate(sample_inputs):
+        print(f"Test Case #{i + 1}\n")
+        row = input["row"]
+        print("Input:\n")
+        print("row =", row, "\n")
 
-    try:
-        arg1 = parse_list(response1)
-    except:
-        print("\nInvalid input for rows.\n")
-
-    print("\nInput: ")
-    print("rows =", arg1, "\n")
-
-    print("Calling solution function...\n")
-    start = time()
-    print("Output: ", connect_pairs(row=arg1), "\n")
-    end = time()
-
-    print("Time taken:", (end - start) * 1000, "ms\n")
-
-
-if __name__ == "__main__":
-    main()
+        print("Output: ", connect_pairs(row), "\n\n")

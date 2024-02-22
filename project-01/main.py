@@ -1,9 +1,14 @@
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 1 of CPSC 335-04
+
 import greedy
 import pairs
 
 
 # Define a function to prompt the user on which file to test
-# and call the fail based on the users input
+# and call the file based on the users input
 def linker() -> None:
     # Prompt the user
     print("Please enter a number for which file to test:\n")
@@ -13,16 +18,19 @@ def linker() -> None:
 
     # Take user input
     response = input("Your input here: ").strip()
-    print()
+    print("\n")
+
     # Match their input to a function to test
     match response:
         case "1":
-            pairs.main()
+            pairs.execute()
         case "2":
-            greedy.main()
+            greedy.execute()
         case _:
-            print("Exiting...")
-            return
+            pass
+
+    # Finishing statement before quitting the program
+    print("Good Bye!")
 
 
 # If this is the main process, call the linker function to prompt the user

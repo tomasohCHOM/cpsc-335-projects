@@ -1,7 +1,14 @@
-from time import time
-from parse import parse_list
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 1 of CPSC 335-04
 
-sample_input = {"distances": [5, 25, 15, 10, 15], "fuel": [1, 2, 1, 0, 3], "mpg": 10}
+# sample_inputs is a list that contains all the inputs for each test case.
+# If you wish to run more test cases against the algorithm, you may modify
+# this variable by adding another entry to the list, similar to the one
+# provided. Note that it has to contain the "distances," "fuel," and "mpg"
+# keys with their corresponding values as per the problem statement.
+sample_inputs = [{"distances": [5, 25, 15, 10, 15], "fuel": [1, 2, 1, 0, 3], "mpg": 10}]
 
 
 def greedy_hamiltonian(distances: list[int], fuel: list[int], mpg: int) -> int:
@@ -30,20 +37,21 @@ def greedy_hamiltonian(distances: list[int], fuel: list[int], mpg: int) -> int:
     return start
 
 
-# Define the main process when this file is run
-def main() -> None:
-    distances = sample_input["distances"]
-    fuel = sample_input["fuel"]
-    mpg = sample_input["mpg"]
+# Define the main execution process when this file is run
+def execute() -> None:
+    # Process all the sample inputs (distances - list of integers
+    # fuel - list of integers, and mpg - a single integer) for each
+    # test case, outputting the result of calling the function
+    # greedy_hamiltonian()
+    for i, input in enumerate(sample_inputs):
+        print(f"Test Case #{i + 1}\n")
+        distances = input["distances"]
+        fuel = input["fuel"]
+        mpg = input["mpg"]
 
-    print("\nInputs:")
-    print("distances = ", distances)
-    print("fuel = ", fuel)
-    print("mpg = ", mpg, "\n")
-    print("Calling solution function...\n")
+        print("Inputs:\n")
+        print("distances = ", distances)
+        print("fuel = ", fuel)
+        print("mpg = ", mpg, "\n")
 
-    print("Output: ", greedy_hamiltonian(distances, fuel, mpg), "\n")
-
-
-if __name__ == "__main__":
-    main()
+        print("Output: ", greedy_hamiltonian(distances, fuel, mpg), "\n\n")
