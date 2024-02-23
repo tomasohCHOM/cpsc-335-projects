@@ -18,16 +18,16 @@ def linker() -> None:
 
     # Take user input
     response = input("Your input here: ").strip()
-    print("\n")
+    print()
 
     # Match their input to a function to test
     match response:
         case "1":
+            print("Running Problem #1: Connecting Pairs of Persons\n")
             pairs.execute()
         case "2":
+            print("Running Algorithm #2: Greedy Approach to Hamiltonian Problem\n")
             greedy.execute()
-        case _:
-            pass
 
     # Finishing statement before quitting the program
     print("Good Bye!")
