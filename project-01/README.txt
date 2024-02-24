@@ -8,6 +8,13 @@ Make sure that all the files are included to run the
 program accordingly. Namely, those files are: main.py, 
 pairs.py, and greedy.py
 
+IMPORTANT: Due to multiple Canvas submissions, please 
+make sure that the names of the files have no "-x" at 
+the end of them. For instance, if there is a file like 
+"main-1.py", please change it to just "main.py" (same for 
+greedy.py and pairs.py). Otherwise, the program will 
+NOT run correctly.
+
 To run this program, make sure that you have Python3 
 installed on your machine.
 
