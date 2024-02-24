@@ -1,7 +1,8 @@
-# Name: Tomas Oh
-# CSUF Email: tomasoh@csu.fullerton.edu
-# CWID: 885566877
-# Submission is for Project 1 of CPSC 335-04
+# Names: Brandon Dominguez, Sean Le, Tomas Oh, Gerrit Vanderstoel
+# CSUF Emails: dominguezbrandon@csu.fullerton.edu, sdle@csu.fullerton.edu,
+# tomasoh@csu.fullerton.edu, gvanderstoel29@csu.fullerton.edu
+# CWIDs (in order of the names): 885691675, 886511047, 885566877, 886517630
+# Submission is for Project 1 of CPSC 335 (Section 04)
 
 # sample_inputs is a list that contains all the inputs for each test case.
 # If you wish to run more test cases against the algorithm, you may modify
