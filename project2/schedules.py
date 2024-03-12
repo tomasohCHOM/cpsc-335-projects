@@ -1,20 +1,28 @@
 # sample_inputs is a list that contains all the inputs for each test case.
 # If you wish to run more test cases against the algorithm, you may modify
 # this variable by adding another entry in the list (separated by a comma).
-# It must be a valid test case, with the "row" as the key, and the value as
-# the corresponding value of "row" (a list of integers), as per the problem
-# statement.
+# Any new inputs must be valid test cases against the algorithm (please take
+# a look at the first sample input and the comments to see what the algorithm's
+# input looks like).
 sample_inputs = [
     {
+        # Represents the time intervals when person 1 is occupied
         "person1_schedule": [["7:00", "8:30"], ["12:00", "13:00"], ["16:00", "18:00"]],
+        # Represents the starting and end time of person 1's
+        # availability per day
         "person1_availability": ["9:00", "19:00"],
+        # Represents the time intervals when person 2 is occupied
         "person2_schedule": [
             ["9:00", "10:30"],
             ["12:20", "13:30"],
             ["14:00", "15:00"],
             ["16:00", "17:00"],
         ],
+        # Represents the starting and end time of person 2's
+        # availability per day
         "person2_availability": ["9:00", "18:30"],
+        # Represents the time (in minutes) that the scheduled meeting
+        # would last for
         "duration": 30,
     }
 ]
