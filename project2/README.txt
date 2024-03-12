@@ -1,13 +1,13 @@
 Make sure that all the files are included to run the 
 program accordingly. Namely, those files are: main.py, 
-pairs.py, and greedy.py
+schedules.py, subsets.py, and sample2.txt
 
 IMPORTANT: Due to multiple Canvas submissions, please 
 make sure that the names of the files have no "-x" at 
 the end of them. For instance, if there is a file like 
 "main-1.py", please change it to just "main.py" (same for 
-greedy.py and pairs.py). Otherwise, the program will 
-NOT run correctly.
+schedules.py, subsets.py, and sample2.txt). Otherwise, the 
+program will NOT run correctly.
 
 To run this program, make sure that you have Python3 
 installed on your machine.
@@ -27,10 +27,16 @@ py main.py
 
 You can follow the instructions from the command line
 to run the program for either Problem 1 or Problem 2.
-To run more test cases against either algorithm, locate
-the files greedy.py and pairs.py, where you can modify the
-list variable sample_input (used to run all the test cases
-of the algorithm). Follow the instructions per the comments
-so that you may add more test cases for the algorithms.
+
+To run more test cases against Algorithm 1, locate the 
+file schedule.py, where you can modify the list variable 
+sample_input (used to run all the test cases of the algorithm). 
+Follow the instructions per the comments so that you may 
+add more test cases for it.
+
+For Algorithm 2, however, locate sample2.txt, where you 
+can add new lines for additional test cases. The inputs 
+would be lists of integers: they are enclosed by paretheses, 
+and each entry is comma-separated.
 
 Thank you.
