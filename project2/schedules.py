@@ -27,21 +27,82 @@ sample_inputs = [
 
 
 def available_schedules(
-    person1_schedule: list[list[str]],
-    person1_daily: list[list[str]],
-    person2_schedule: list[list[str]],
-    person2_daily: list[list[str]],
+    p1_schedule: list[list[str]],
+    p1_daily: list[str],
+    p2_schedule: list[list[str]],
+    p2_daily: list[str],
     duration: int,
 ) -> list[list[str]]:
     # Initialize two pointers p1 = p2 = 0
     p1 = p2 = 0
     # Initialize unavailabilities to an empty array. This will hold
     # ALL the times when either person1 or person2 is unavailable
-    unavailabilities = []
-    while p1 < len(person1_schedule) and p2 < len(person2_schedule):
-        p1 += 1
-        p2 += 1
-    return []
+    unavailabilities = [["00:00", max(p1_daily[0], p2_daily[0])]]
+
+    # Get
+    while p1 < len(p1_schedule) and p2 < len(p2_schedule):
+        if p1 == len(p1_schedule):
+            unavailabilities.append(p2_schedule[p2])
+            p2 += 1
+            continue
+        if p1 == len(p1_schedule):
+            unavailabilities.append(p1_schedule[p1])
+            p1 += 1
+            continue
+        if compare_times(p1_schedule[p1][0], p2_schedule[p2][0]) == -1:
+            unavailabilities.append(p1_schedule[p1])
+            p1 += 1
+        else:
+            unavailabilities.append(p2_schedule)
+            p2 += 1
+
+    print(unavailabilities)
+
+    unavailabilities.append([min(p1_daily[1], p2_daily[1]), "24:00"])
+
+    # Now merge the times that are overlapping into single intervals
+    merged, i = [unavailabilities[0]], 0
+    for time in unavailabilities:
+        end1, start2 = merged[-1][1], time[0]
+        print(end1, start2)
+        if compare_times(end1, start2) == -1:
+            merged.append(time)
+        else:
+            merged[-1][1] = max(end1, time[1])
+
+    # Now loop through the merged intervals and find the available times
+    output = []
+    for i in range(1, len(merged)):
+        start, end = merged[i - 1][1], merged[i][0]
+        if end - start >= duration:
+            output.append([minutes_to_time(start), minutes_to_time(end)])
+
+    return output
+
+
+# Helper function that compares time1 and time2, returning 1
+# if time1 > time2, 0 if time1 == time2, or -1 if time1 < time2
+def compare_times(time1: str, time2: str):
+    converted_time1 = time_to_minutes(time1)
+    converted_time2 = time_to_minutes(time2)
+
+    if converted_time1 > converted_time2:
+        return 1
+    if converted_time1 == converted_time2:
+        return 0
+    if converted_time1 < converted_time2:
+        return 1
+
+
+# Converts a string in military time format to minutes (int)
+def time_to_minutes(time):
+    hr, min = time.split(":")
+    return int(hr) * 60 + int(min)
+
+
+# Converts an integer "minutes" to military time format
+def minutes_to_time(minutes):
+    return f"{minutes//60}:{minutes%60:02d}"
 
 
 # Define the main execution process when this file is run
@@ -49,9 +110,9 @@ def execute() -> None:
     for i, input in enumerate(sample_inputs):
         print(f"Test Case #{i + 1}\n")
         person1_schedule = input["person1_schedule"]
-        person1_daily = input["person1_availability"]
+        person1_daily = input["person1_daily"]
         person2_schedule = input["person2_schedule"]
-        person2_daily = input["person2_availability"]
+        person2_daily = input["person2_daily"]
         duration = input["duration"]
 
         print("Input:\n")
