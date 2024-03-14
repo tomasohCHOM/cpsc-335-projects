@@ -1,3 +1,8 @@
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 2 of CPSC 335 (Section 04)
+
 # sample_inputs is a list that contains all the inputs for each test case.
 # If you wish to run more test cases against the algorithm, you may modify
 # this variable by adding another entry in the list (separated by a comma).
@@ -35,17 +40,20 @@ def available_schedules(
 ) -> list[list[str]]:
     # Initialize two pointers p1 = p2 = 0
     p1 = p2 = 0
-    # Initialize unavailabilities to an empty array. This will hold
+    # Initialize unavailabilities to a list. This will hold
     # ALL the times when either person1 or person2 is unavailable
+
+    # Append the first interval which considers the lower bound
     unavailabilities = [["00:00", max(p1_daily[0], p2_daily[0])]]
 
-    # Get
-    while p1 < len(p1_schedule) and p2 < len(p2_schedule):
+    # Get each of the unavailable intervals in our list,
+    # ensuring that we have them sorted for convenience
+    while p1 < len(p1_schedule) or p2 < len(p2_schedule):
         if p1 == len(p1_schedule):
             unavailabilities.append(p2_schedule[p2])
             p2 += 1
             continue
-        if p1 == len(p1_schedule):
+        if p2 == len(p2_schedule):
             unavailabilities.append(p1_schedule[p1])
             p1 += 1
             continue
@@ -53,29 +61,33 @@ def available_schedules(
             unavailabilities.append(p1_schedule[p1])
             p1 += 1
         else:
-            unavailabilities.append(p2_schedule)
+            unavailabilities.append(p2_schedule[p2])
             p2 += 1
 
-    print(unavailabilities)
-
+    # Append the last interval which considers the upper bound
     unavailabilities.append([min(p1_daily[1], p2_daily[1]), "24:00"])
 
-    # Now merge the times that are overlapping into single intervals
+    # Merge the times that are overlapping into single intervals
     merged, i = [unavailabilities[0]], 0
     for time in unavailabilities:
+        # Compare the current end time to the next start time
         end1, start2 = merged[-1][1], time[0]
-        print(end1, start2)
         if compare_times(end1, start2) == -1:
+            # If end1 < start2, append that time to merged
             merged.append(time)
         else:
-            merged[-1][1] = max(end1, time[1])
+            # Else, modify the second entry in the last element of
+            # merged to contain the max(end1, time[1])
+            merged[-1][1] = end1 if compare_times(end1, time[1]) == 1 else time[1]
 
-    # Now loop through the merged intervals and find the available times
     output = []
+    # Loop through the merged intervals and find the available times
     for i in range(1, len(merged)):
-        start, end = merged[i - 1][1], merged[i][0]
-        if end - start >= duration:
-            output.append([minutes_to_time(start), minutes_to_time(end)])
+        end1, start2 = merged[i - 1][1], merged[i][0]
+        # It will be an available time if start2 - end1 gives time for
+        # a meeting of duration x (30 minutes, for example)
+        if time_to_minutes(start2) - time_to_minutes(end1) >= duration:
+            output.append([end1, start2])
 
     return output
 
@@ -91,7 +103,7 @@ def compare_times(time1: str, time2: str):
     if converted_time1 == converted_time2:
         return 0
     if converted_time1 < converted_time2:
-        return 1
+        return -1
 
 
 # Converts a string in military time format to minutes (int)

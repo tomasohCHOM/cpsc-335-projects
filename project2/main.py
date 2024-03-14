@@ -1,3 +1,8 @@
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 2 of CPSC 335 (Section 04)
+
 import schedules
 import subsets
 

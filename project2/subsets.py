@@ -1,3 +1,9 @@
+# Name: Tomas Oh
+# CSUF Email: tomasoh@csu.fullerton.edu
+# CWID: 885566877
+# Submission is for Project 2 of CPSC 335 (Section 04)
+
+
 # A helper function to parse txt file entries to a list
 # of numbers (needed for Algorithm 2 - Arraylists and Subsets)
 def parse_list(user_input: str) -> list[int]:
