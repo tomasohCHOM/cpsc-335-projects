@@ -90,7 +90,7 @@ def available_schedules(
             if time_to_minutes(start2) - time_to_minutes(end1) >= duration:
                 output.append([end1, start2])
 
-        # It will be an available time if start2 - end1 ? duration of
+        # It will be an available time if start2 - end1 > duration of
         # meeting (30 minutes, for example)
         elif time_to_minutes(start2) - time_to_minutes(end1) > duration:
             output.append([end1, start2])
