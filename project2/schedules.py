@@ -84,9 +84,15 @@ def available_schedules(
     # Loop through the merged intervals and find the available times
     for i in range(1, len(merged)):
         end1, start2 = merged[i - 1][1], merged[i][0]
-        # It will be an available time if start2 - end1 gives time for
-        # a meeting of duration x (30 minutes, for example)
-        if time_to_minutes(start2) - time_to_minutes(end1) >= duration:
+        # If the interval located at either of the bounds, we can schedule
+        # meeting if its is greater or exactly the specified duration
+        if i == 1 or i == len(merged) - 1:
+            if time_to_minutes(start2) - time_to_minutes(end1) >= duration:
+                output.append([end1, start2])
+
+        # It will be an available time if start2 - end1 ? duration of
+        # meeting (30 minutes, for example)
+        elif time_to_minutes(start2) - time_to_minutes(end1) > duration:
             output.append([end1, start2])
 
     return output
