@@ -68,7 +68,7 @@ def available_schedules(
     unavailabilities.append([min(p1_daily[1], p2_daily[1]), "24:00"])
 
     # Merge the times that are overlapping into single intervals
-    merged, i = [unavailabilities[0]], 0
+    merged = [unavailabilities[0]]
     for time in unavailabilities:
         # Compare the current end time to the next start time
         end1, start2 = merged[-1][1], time[0]
