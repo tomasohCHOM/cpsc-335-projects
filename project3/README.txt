@@ -5,7 +5,7 @@ Submission is for Project 2 of CPSC 335 (Section 04)
 
 Make sure that all the files are included to run the 
 program accordingly. Namely, those files are: main.py, 
-exhaustive.py, and dp.py.
+solve.py, and input.txt.
 
 IMPORTANT: Due to multiple Canvas submissions, please 
 make sure that the names of the files have no "-x" at 
@@ -33,10 +33,8 @@ py main.py
 You can follow the instructions from the command line
 to run the program for either Problem 1 or Problem 2.
 
-To run more more test cases against either algorithm, 
-locate the file for each implementation, where you can 
-modify the list variable sample_input (used to run all 
-the test cases of the algorithm). Follow the instructions 
-per the comments to add more test cases.
+To run more more test cases against the algorithm, 
+locate the file input.txt, where you can modify the 
+2D grid if needed.
 
 Thank you.

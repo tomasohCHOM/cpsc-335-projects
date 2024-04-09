@@ -3,8 +3,7 @@
 # CWID: 885566877
 # Submission is for Project 3 of CPSC 335 (Section 04)
 
-import exhaustive
-import dp
+from solve import Solve
 
 
 # Define a function to prompt the user on which file to test
@@ -21,14 +20,15 @@ def linker() -> None:
     response = input("Your input here: ").strip()
     print()
 
+    solve = Solve()
     # Match their input to a function to test
     match response:
         case "1":
             print("Running Algorithm #1: Exhaustive Search\n")
-            exhaustive.execute()
+            solve.solve_dp()
         case "2":
             print("Running Algorithm #2: Dynamic Programming\n")
-            dp.execute()
+            solve.solve_dp()
 
     # Finishing statement before quitting the program
     print("Good Bye!")
