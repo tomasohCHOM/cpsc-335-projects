@@ -21,14 +21,17 @@ def linker() -> None:
     print()
 
     solve = Solve()
+    print("Input:\n")
+    solve.print_grid()
+
     # Match their input to a function to test
     match response:
         case "1":
             print("Running Algorithm #1: Exhaustive Search\n")
-            solve.solve_dp()
+            print("Output:", solve.solve_exhaustive(), "\n")
         case "2":
             print("Running Algorithm #2: Dynamic Programming\n")
-            solve.solve_dp()
+            print("Output:", solve.solve_dp(), "\n")
 
     # Finishing statement before quitting the program
     print("Good Bye!")
