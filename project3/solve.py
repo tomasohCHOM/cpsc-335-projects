@@ -1,16 +1,8 @@
-# Helper function to parse the input (soccer field) as a 2D grid.
-def get_input(file_name) -> list[str]:
-    res = []
-    with open(file_name, "r") as f:
-        res = f.read().strip().split("\n")
-    return res
-
-
 # A class with methods solve_exhaustive and solve_dp that solves
 # The Opponent Avoidance Problem using exhaustive search and DP.
 class Solve:
-    def __init__(self, file_num) -> None:
-        self.field = get_input(f"input{file_num}.txt")
+    def set_field(self, field: list[str]) -> None:
+        self.field = field
 
     def solve_exhaustive(self) -> int:
         # Initialize r and c as the # of rows and columns
@@ -82,8 +74,3 @@ class Solve:
 
         # Return the number of paths to the bottom right corner
         return paths[r - 1][c - 1]
-
-    def print_grid(self) -> None:
-        for line in self.field:
-            print(line)
-        print()

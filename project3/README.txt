@@ -33,8 +33,8 @@ py main.py
 You can follow the instructions from the command line
 to run the program for either Problem 1 or Problem 2.
 
-To run more more test cases against the algorithm, 
-locate the file input.txt, where you can modify the 
-2D grid if needed.
+Test cases are randomly generated. You can verify if the 
+algorithms' implementations produce the same outputs for 
+the same randomly generated inputs.
 
 Thank you.
