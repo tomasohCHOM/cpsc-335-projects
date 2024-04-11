@@ -3,7 +3,7 @@
 # CWID: 885566877
 # Submission is for Project 3 of CPSC 335 (Section 04)
 
-# Optional formatting libraries (tqdm & rich)
+# Optional formatting libraries (tqdm and rich)
 try:
     from tqdm import tqdm
 
@@ -31,13 +31,16 @@ from time import time
 # Import plotting library
 import matplotlib.pyplot as plt
 
+# Import sys to pipe final results to a file
+import sys
+
 
 # -------------------------------------------------------------------------------
-# CONSTANTS TO CHANGE
+# CONSTANTS
 print_debugging = False  # whether to print debugging information
 yaxis = "MICROSECONDS"  # can be SECONDS, MILLISECONDS, MINUTES or MICROSECONDS
 exhaustive_color, dp_color = "red", "blue"  # matplotlib colors
-NUM_TESTS = 20  # number of entries to test
+num_tests = 1000  # number of entries to test
 input_dimensions = (5, 12)  # (min, max) dimensions of the input grids
 seed = None  # random seed for reproducibility, set to None for random seed
 # --------------------------------------------------------------------------------
@@ -49,16 +52,17 @@ if print_debugging:
 r.seed(s)
 
 
-def trunc(x) -> int:
+# Convert time to the designated time stamp
+def convert_time(x: float) -> int:
     match yaxis:
         case "MINUTES":
-            return int(x / 60)
+            return x / 60
         case "SECONDS":
-            return int(x)
+            return x
         case "MILISECONDS":
-            return int(x * 1000)
+            return x * 1000
         case _:
-            return int(x * 1000000)
+            return x * 1000000
 
 
 # Define the Solver object that contains methods to
@@ -66,6 +70,7 @@ def trunc(x) -> int:
 solver = Solve()
 
 
+# Create a random grid
 def make_grid() -> list[str]:
     # Decide density/sparsity percent
     c = r.randint(5, 30)
@@ -83,12 +88,14 @@ def make_grid() -> list[str]:
     return grid
 
 
+# Helper function to print the grid
 def print_grid(grid) -> None:
     for line in grid:
         print(line)
     print()
 
 
+# Create a scatterplot given the results list, color, and label
 def make_scatterplot(results: list[tuple[int, int]], color, label) -> None:
     # Make a plot with both data points
     plt.scatter(*zip(*results), color=color, label=label)
@@ -98,6 +105,7 @@ def make_scatterplot(results: list[tuple[int, int]], color, label) -> None:
     plt.show()
 
 
+# Run a test using the exhaustive algorithm
 def run_exhaustive(grid: list[str]) -> tuple[int, int, int]:
     # Set the solver to use the new grid
     solver.set_field(grid)
@@ -106,9 +114,10 @@ def run_exhaustive(grid: list[str]) -> tuple[int, int, int]:
     res = solver.solve_exhaustive()
     end_e = time()
     rows, cols = len(grid), len(grid[0])
-    return (res, rows + cols - 2, trunc(end_e - start_e))
+    return (res, rows + cols - 2, convert_time(end_e - start_e))
 
 
+# Run a test using the dp algorithm
 def run_dp(grid: list[str]) -> tuple[int, int, int]:
     solver.set_field(grid)
     # Test the dp solution
@@ -116,7 +125,7 @@ def run_dp(grid: list[str]) -> tuple[int, int, int]:
     res = solver.solve_dp()
     end_d = time()
     rows, cols = len(grid), len(grid[0])
-    return (res, max(rows, cols), trunc(end_d - start_d))
+    return (res, max(rows, cols), convert_time(end_d - start_d))
 
 
 # Define a function to prompt the user on which file to test
@@ -131,9 +140,9 @@ def main() -> None:
 
     # Run the tests
     iter_obj = (
-        range(NUM_TESTS)
+        range(num_tests)
         if print_debugging or not prog
-        else tqdm(range(NUM_TESTS), desc="Testing")
+        else tqdm(range(num_tests), desc="Testing")
     )
     for _ in iter_obj:
         grid = make_grid()
@@ -143,19 +152,22 @@ def main() -> None:
         dp_results.append((d[1], d[2]))
 
         e_res = f"Exhaustive Total Paths: {e[0]}"
-        e_time = f"Exhaustive Empirical Time: {d[2]}"
+        e_time = f"Exhaustive Empirical Time: {e[2]}"
         d_res = f"Dynamic Programming Total Paths: {d[0]}"
         d_time = f"Dynamic Programming Empirical Time: {d[2]}"
 
         overall_results.append(((e_res, e_time), (d_res, d_time), grid))
 
-    for res in overall_results:
-        print("Test case Input:")
-        print_grid(res[2])
-        print(res[0][0])
-        print(res[0][1], "\n")
-        print(res[1][0])
-        print(res[1][1], "\n")
+    # Uncomment the following section if you want to see
+    # results in standard output
+
+    # for res in overall_results:
+    #     print("Test case Input:")
+    #     print_grid(res[2])
+    #     print(res[0][0])
+    #     print(res[0][1], "\n")
+    #     print(res[1][0])
+    #     print(res[1][1], "\n")
 
     make_scatterplot(exhaustive_results, exhaustive_color, "Exhaustive Approach")
     make_scatterplot(dp_results, dp_color, "Dynamic Programming Approach")
