@@ -9,7 +9,8 @@ def get_input(file_name) -> list[str]:
 # A class with methods solve_exhaustive and solve_dp that solves
 # The Opponent Avoidance Problem using exhaustive search and DP.
 class Solve:
-    field = get_input("input.txt")
+    def __init__(self, file_num) -> None:
+        self.field = get_input(f"input{file_num}.txt")
 
     def solve_exhaustive(self) -> int:
         # Initialize r and c as the # of rows and columns

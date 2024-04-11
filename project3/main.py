@@ -5,6 +5,8 @@
 
 from solve import Solve
 
+NUM_TESTS = 3
+
 
 # Define a function to prompt the user on which file to test
 # and call the file based on the users input
@@ -20,20 +22,18 @@ def linker() -> None:
     response = input("Your input here: ").strip()
     print()
 
-    solve = Solve()
-    print("Input:\n")
-    solve.print_grid()
+    if response in {"1", "2"}:
+        method_name = "Exhaustive Search" if response == "1" else "Dynamic Programming"
+        print(f"Running Algorithm #{response}: {method_name}\n")
 
-    # Match their input to a function to test
-    match response:
-        case "1":
-            print("Running Algorithm #1: Exhaustive Search\n")
-            print("Output:", solve.solve_exhaustive(), "\n")
-        case "2":
-            print("Running Algorithm #2: Dynamic Programming\n")
-            print("Output:", solve.solve_dp(), "\n")
+        for i in range(NUM_TESTS):
+            solve = Solve(i + 1)
+            print(f"Input #{i + 1}:\n")
+            solve.print_grid()
 
-    # Finishing statement before quitting the program
+            output = solve.solve_exhaustive() if response == "1" else solve.solve_dp()
+            print("Output:", output, "\n")
+
     print("Good Bye!")
 
 
