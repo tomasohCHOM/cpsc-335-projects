@@ -5,6 +5,10 @@ class Solve:
         self.field = field
 
     def solve_exhaustive(self) -> int:
+        # Edge case: initial and last cels are impassible
+        if self.field[0][0] == "X" or self.field[-1][-1] == "X":
+            return 0
+
         # Initialize r and c as the # of rows and columns
         r, c = len(self.field), len(self.field[0])
         size = r + c - 2

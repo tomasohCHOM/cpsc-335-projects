@@ -4,8 +4,8 @@ CWID: 885566877
 Submission is for Project 2 of CPSC 335 (Section 04)
 
 Make sure that all the files are included to run the 
-program accordingly. Namely, those files are: main.py, 
-solve.py, and input.txt.
+program accordingly. Namely, those files are: main.py 
+and solve.py.
 
 IMPORTANT: Due to multiple Canvas submissions, please 
 make sure that the names of the files have no "-x" at 

@@ -40,7 +40,7 @@ import sys
 print_debugging = False  # whether to print debugging information
 yaxis = "MICROSECONDS"  # can be SECONDS, MILLISECONDS, MINUTES or MICROSECONDS
 exhaustive_color, dp_color = "red", "blue"  # matplotlib colors
-num_tests = 1000  # number of entries to test
+num_tests = 20  # number of entries to test
 input_dimensions = (5, 12)  # (min, max) dimensions of the input grids
 seed = None  # random seed for reproducibility, set to None for random seed
 # --------------------------------------------------------------------------------
@@ -158,16 +158,16 @@ def main() -> None:
 
         overall_results.append(((e_res, e_time), (d_res, d_time), grid))
 
-    # Uncomment the following section if you want to see
-    # results in standard output
+    # Comment the following section if you
+    # wish to not see results in standard output
 
-    # for res in overall_results:
-    #     print("Test case Input:")
-    #     print_grid(res[2])
-    #     print(res[0][0])
-    #     print(res[0][1], "\n")
-    #     print(res[1][0])
-    #     print(res[1][1], "\n")
+    for res in overall_results:
+        print("Test case Input:")
+        print_grid(res[2])
+        print(res[0][0])
+        print(res[0][1], "\n")
+        print(res[1][0])
+        print(res[1][1], "\n")
 
     make_scatterplot(exhaustive_results, exhaustive_color, "Exhaustive Approach")
     make_scatterplot(dp_results, dp_color, "Dynamic Programming Approach")
