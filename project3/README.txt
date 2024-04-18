@@ -15,7 +15,10 @@ schedules.py, subsets.py, and sample2.txt). Otherwise, the
 program will NOT run correctly.
 
 To run this program, make sure that you have Python3 
-installed on your machine.
+installed on your machine. Additionally, you need the 
+matplotlib library to display the scatterplots and, 
+optionally, tqdm and rich (printing) to indicate the 
+progress and display results in standard output.
 
 Then, run the following command on the terminal to 
 execute the program on Linux/Mac:
@@ -35,6 +38,8 @@ to run the program for either Problem 1 or Problem 2.
 
 Test cases are randomly generated. You can verify if the 
 algorithms' implementations produce the same outputs for 
-the same randomly generated inputs.
+the same randomly generated inputs. You can also modify the 
+number of test cases to run by locating the "num_tests" 
+constant in main.py.
 
 Thank you.
