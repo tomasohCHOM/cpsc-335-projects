@@ -11,7 +11,7 @@ import delay
 # and call the file based on the users input
 def linker() -> None:
     # Prompt the user
-    print("Please enter a number for which file to test:\n")
+    print("Please enter a number for which algorithm to test:\n")
     print("1. Rentals")
     print("2. Network Delay Time\n")
     print("Enter anything else to exit\n")
@@ -26,7 +26,7 @@ def linker() -> None:
             print("Running Problem #1: Rentals\n")
             rentals.execute()
         case "2":
-            print("Running Algorithm #2: Network Delay Time\n")
+            print("Running Problem #2: Network Delay Time\n")
             delay.execute()
 
     # Finishing statement before quitting the program

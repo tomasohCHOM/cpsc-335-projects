@@ -25,7 +25,25 @@ sample_inputs = [
 
 
 def min_laptops(start_end: list[list[int, int]]) -> int:
-    return 0
+    # Sort the intervals (based on start time)
+    start_end.sort()
+    # Create a list to keep track of laptops in use
+    in_use = []
+    # Iterate through each interval
+    for interval in start_end:
+        # Check for laptop availability
+        found = False
+        for i, end_time in enumerate(in_use):
+            # Found an available laptop, update end time
+            if end_time <= interval[0]:
+                in_use[i] = interval[1]
+                found = True
+                break
+        # If no laptops found, rent a new one
+        if not found:
+            in_use.append(interval[1])
+    # Return the min number of laptops in use
+    return len(in_use)
 
 
 # Define the main execution process when this file is run
